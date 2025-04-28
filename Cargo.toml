@@ -6,6 +6,7 @@ description = "This crate provdes types, traits and utility functions to the sin
 homepage = "https://singlerust.com"
 authors = ["Ian F. Diks"]
 repository = "https://github.com/SingleRust/single-utilities"
+license-file = "LICENSE.md"
 
 [dependencies]
 num-traits = "0.2.19"
