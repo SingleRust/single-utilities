@@ -1,13 +1,14 @@
+use std::fmt::Debug;
 use std::iter::Sum;
 use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Zero};
-use std::ops::{Add, AddAssign, MulAssign};
+use std::ops::{Add, AddAssign, MulAssign, SubAssign};
 
 pub trait NumericOps:
-    Zero + One + NumCast + Copy + AddAssign + MulAssign + PartialOrd + Bounded + Add<Output = Self> + Sum
+    Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug
 {
 }
 impl<
-    T: Zero + One + NumCast + Copy + AddAssign + MulAssign + PartialOrd + Bounded + Add<Output = Self> + Sum,
+    T: Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug,
 > NumericOps for T
 {
 }
