@@ -4,11 +4,11 @@ use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Zero};
 use std::ops::{Add, AddAssign, MulAssign, SubAssign};
 
 pub trait NumericOps:
-    Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug
+    Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug + Default
 {
 }
 impl<
-    T: Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug,
+    T: Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug + Default,
 > NumericOps for T
 {
 }
