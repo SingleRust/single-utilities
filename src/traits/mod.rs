@@ -2,6 +2,7 @@ use std::fmt::Debug;
 use std::iter::Sum;
 use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Zero};
 use std::ops::{Add, AddAssign, MulAssign, SubAssign};
+use num_traits::float::FloatCore;
 
 pub trait NumericOps:
     Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug + Default
@@ -17,9 +18,9 @@ pub trait NumericOpsTS: NumericOps + Send + Sync {}
 
 impl<T: NumericOps + Send + Sync> NumericOpsTS for T {}
 
-pub trait FloatOps: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive {}
+pub trait FloatOps: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore {}
 
-impl<T: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive> FloatOps for T {}
+impl<T: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore> FloatOps for T {}
 
 pub trait FloatOpsTS: FloatOps + Sync + Send {}
 
