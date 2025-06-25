@@ -31,6 +31,7 @@ impl<T: FloatOps + Send + Sync> FloatOpsTS for T {}
 #[cfg(feature="simd")]
 pub trait FloatOpsTSSimba: FloatOpsTS + SimdRealField + RealField {}
 
+#[cfg(feature="simd")]
 impl<T: FloatOpsTS + SimdRealField + RealField> FloatOpsTSSimba for T {}
 
 // Define a type alias for our numeric constraints
