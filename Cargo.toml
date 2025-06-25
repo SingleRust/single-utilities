@@ -1,6 +1,6 @@
 [package]
 name = "single-utilities"
-version = "0.6.0"
+version = "0.7.0"
 edition = "2024"
 description = "This crate provdes types, traits and utility functions to the single-rust ecosystem that can be universally used. You can also use it within your own ecosystem 👀"
 homepage = "https://singlerust.com"
@@ -8,5 +8,10 @@ authors = ["Ian F. Diks"]
 repository = "https://github.com/SingleRust/single-utilities"
 license-file = "LICENSE.md"
 
+[features]
+simd = ["dep:simba"]
+
+
 [dependencies]
 num-traits = "0.2.19"
+simba = {version = "0.9.0", optional = true}

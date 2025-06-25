@@ -1,6 +1,8 @@
 use std::fmt::Debug;
 use std::iter::Sum;
 use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Zero};
+#[cfg(feature="simd")]
+use simba::{scalar::RealField, simd::SimdRealField};
 use std::ops::{Add, AddAssign, MulAssign, SubAssign};
 use num_traits::float::FloatCore;
 
@@ -25,6 +27,11 @@ impl<T: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore
 pub trait FloatOpsTS: FloatOps + Sync + Send {}
 
 impl<T: FloatOps + Send + Sync> FloatOpsTS for T {}
+
+#[cfg(feature="simd")]
+pub trait FloatOpsTSSimba: FloatOpsTS + SimdRealField + RealField {}
+
+impl<T: FloatOpsTS + SimdRealField + RealField> FloatOpsTSSimba for T {}
 
 // Define a type alias for our numeric constraints
 pub trait NumericNormalize:
