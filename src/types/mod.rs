@@ -32,3 +32,12 @@ impl BatchIdentifier for i32 {}
 impl BatchIdentifier for u32 {}
 impl BatchIdentifier for usize {}
 
+#[derive(Debug, Clone, Copy)]
+pub enum DistanceMetric {
+    /// Euclidean distance
+    Euclidean,
+    /// Manhattan distance
+    Manhattan,
+    /// Cosine distance
+    Cosine,
+}
