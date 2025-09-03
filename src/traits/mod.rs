@@ -1,17 +1,41 @@
+use num_traits::float::FloatCore;
+use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Unsigned, Zero};
+#[cfg(feature = "simd")]
+use simba::{scalar::RealField, simd::SimdRealField};
 use std::fmt::Debug;
 use std::iter::Sum;
-use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Zero};
-#[cfg(feature="simd")]
-use simba::{scalar::RealField, simd::SimdRealField};
 use std::ops::{Add, AddAssign, MulAssign, SubAssign};
-use num_traits::float::FloatCore;
 
 pub trait NumericOps:
-    Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug + Default
+    Zero
+    + One
+    + NumCast
+    + Copy
+    + AddAssign
+    + MulAssign
+    + SubAssign
+    + PartialOrd
+    + Bounded
+    + Add<Output = Self>
+    + Sum
+    + Debug
+    + Default
 {
 }
 impl<
-    T: Zero + One + NumCast + Copy + AddAssign + MulAssign + SubAssign + PartialOrd + Bounded + Add<Output = Self> + Sum + Debug + Default,
+    T: Zero
+        + One
+        + NumCast
+        + Copy
+        + AddAssign
+        + MulAssign
+        + SubAssign
+        + PartialOrd
+        + Bounded
+        + Add<Output = Self>
+        + Sum
+        + Debug
+        + Default,
 > NumericOps for T
 {
 }
@@ -20,7 +44,10 @@ pub trait NumericOpsTS: NumericOps + Send + Sync {}
 
 impl<T: NumericOps + Send + Sync> NumericOpsTS for T {}
 
-pub trait FloatOps: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore {}
+pub trait FloatOps:
+    NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore
+{
+}
 
 impl<T: NumericOps + num_traits::Float + FromPrimitive + ToPrimitive + FloatCore> FloatOps for T {}
 
@@ -28,10 +55,10 @@ pub trait FloatOpsTS: FloatOps + Sync + Send {}
 
 impl<T: FloatOps + Send + Sync> FloatOpsTS for T {}
 
-#[cfg(feature="simd")]
+#[cfg(feature = "simd")]
 pub trait FloatOpsTSSimba: FloatOpsTS + SimdRealField + RealField {}
 
-#[cfg(feature="simd")]
+#[cfg(feature = "simd")]
 impl<T: FloatOpsTS + SimdRealField + RealField> FloatOpsTSSimba for T {}
 
 // Define a type alias for our numeric constraints
@@ -56,4 +83,14 @@ impl<T: Default + Clone> ZeroVec for Vec<T> {
         self.reserve(len);
         self.extend(std::iter::repeat_n(T::default(), len));
     }
+}
+
+pub trait UIndex:
+    Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize>
+{
+}
+
+impl<I: Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize>> UIndex
+    for I
+{
 }
