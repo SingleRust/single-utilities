@@ -86,12 +86,12 @@ impl<T: Default + Clone> ZeroVec for Vec<T> {
 }
 
 pub trait UIndex:
-    Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize>
+    Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize> + Bounded
 {
 }
 
-impl<I: Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize>> UIndex
-    for I
+impl<I: Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + Into<usize> + Bounded>
+    UIndex for I
 {
 }
 
