@@ -94,3 +94,7 @@ impl<I: Unsigned + Zero + One + Copy + PartialEq + PartialOrd + From<usize> + In
     for I
 {
 }
+
+pub trait Scalar: 'static + Clone + PartialEq + Debug {}
+
+impl<T: 'static + Clone + PartialEq + Debug> Scalar for T {}

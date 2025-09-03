@@ -1,6 +1,6 @@
 [package]
 name = "single-utilities"
-version = "0.8.1"
+version = "0.8.2"
 edition = "2024"
 description = "This crate provdes types, traits and utility functions to the single-rust ecosystem that can be universally used. You can also use it within your own ecosystem 👀"
 homepage = "https://singlerust.com"
