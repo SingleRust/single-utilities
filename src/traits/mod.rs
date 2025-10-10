@@ -3,6 +3,7 @@ use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Unsigned, Ze
 #[cfg(feature = "simd")]
 use simba::{scalar::RealField, simd::SimdRealField};
 use std::fmt::Debug;
+use std::hash::Hash;
 use std::iter::Sum;
 use std::ops::{Add, AddAssign, MulAssign, SubAssign};
 
@@ -134,11 +135,11 @@ impl<T: Default + Clone> ZeroVec for Vec<T> {
 /// types that can be safely used as array or vector indices while providing
 /// mathematical operations and bounds checking.
 pub trait UIndex:
-    Unsigned + Zero + One + Copy + Eq + Ord + PartialOrd + From<usize> + Into<usize> + Bounded
+    Unsigned + Zero + One + Copy + Eq + Ord + PartialOrd + From<usize> + Into<usize> + Bounded + Hash
 {
 }
 
-impl<I: Unsigned + Zero + One + Copy + Eq + Ord + PartialOrd + From<usize> + Into<usize> + Bounded>
+impl<I: Unsigned + Zero + One + Copy + Eq + Ord + PartialOrd + From<usize> + Into<usize> + Bounded + Hash>
     UIndex for I
 {
 }
