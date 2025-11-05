@@ -1,6 +1,6 @@
 [package]
 name = "single-utilities"
-version = "0.8.6"
+version = "0.8.7"
 edition = "2024"
 description = "This crate provdes types, traits and utility functions to the single-rust ecosystem that can be universally used. You can also use it within your own ecosystem 👀"
 homepage = "https://singlerust.com"
@@ -15,3 +15,4 @@ simd = ["dep:simba"]
 [dependencies]
 num-traits = "0.2.19"
 simba = { version = "0.9.1", optional = true }
+anyhow = "1.0.100"
