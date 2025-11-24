@@ -1,4 +1,6 @@
+#[cfg(feature = "convert")]
 use nalgebra::{Dim, Dyn, U1};
+#[cfg(feature = "convert")]
 use ndarray::ShapeBuilder;
 use num_traits::float::FloatCore;
 use num_traits::{Bounded, FromPrimitive, NumCast, One, ToPrimitive, Unsigned, Zero};
@@ -204,6 +206,7 @@ impl<'a, N: Scalar, R: Dim, RStride: Dim, CStride: Dim> IntoNdarray1
     }
 }
 
+#[cfg(feature = "convert")]
 impl<'a, N: Scalar, R: Dim, C: Dim, RStride: Dim, CStride: Dim> IntoNdarray2
     for nalgebra::Matrix<N, R, C, nalgebra::ViewStorage<'a, N, R, C, RStride, CStride>>
 {
